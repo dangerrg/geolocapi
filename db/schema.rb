@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_08_22_110704) do
 
   create_table "data_ips", force: :cascade do |t|
     t.string "ip_address"
-    t.string "type"
+    t.string "ip_type"
     t.string "continent_code"
     t.string "continent_name"
     t.string "country_code"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_08_22_110704) do
   end
 
   create_table "data_types", force: :cascade do |t|
-    t.string "type"
+    t.string "name_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

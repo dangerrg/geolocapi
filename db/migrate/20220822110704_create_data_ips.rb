@@ -2,7 +2,7 @@ class CreateDataIps < ActiveRecord::Migration[6.0]
   def change
     create_table :data_ips do |t|
       t.string :ip_address
-      t.string :type
+      t.string :ip_type
       t.string :continent_code
       t.string :continent_name
       t.string :country_code
