@@ -1,0 +1,13 @@
+development:
+  # IP_STACK
+  IP_PROVIDER_BASE_URL: 'http://api.ipstack.com/'
+  IP_PROVIDER_CHECK_IP: 'check'  # Will check the ip_address from the request is made
+  IP_PROVIDER_ACCESS_KEY: 'YOUR_IP_STACK_ACCESS_KEY'
+  IP_PROVIDER_FIELDS: 'ip,type,continent_code,continent_name,country_code,region_name,city,zip'
+
+test:
+  # IP_STACK
+  IP_PROVIDER_BASE_URL: 'http://api.ipstack.com/'
+  IP_PROVIDER_CHECK_IP: 'check'  # Will check the ip_address from the request is made
+  IP_PROVIDER_ACCESS_KEY: 'YOUR_IP_STACK_ACCESS_KEY'
+  IP_PROVIDER_FIELDS: 'ip,type,continent_code,continent_name,country_code,region_name,city,zip'

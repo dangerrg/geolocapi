@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -49,6 +50,8 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  # Enable RequestSpecHelper when loading spec/support
+  config.include RequestSpecHelper, type: :request  
 
   # Add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
