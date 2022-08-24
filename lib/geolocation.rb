@@ -24,5 +24,5 @@ module Geolocation
     puts "Error (#{e.message})"
   end
 
-  pp JSON.parse(getiplocation("132.191.24.83"))
+  pp JSON.parse(getiplocation(''))
 end

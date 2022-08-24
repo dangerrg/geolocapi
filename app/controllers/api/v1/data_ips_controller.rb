@@ -3,12 +3,12 @@ module Api
     class DataIpsController < ApplicationController
       include Geolocation
       before_action :set_data_ip, only: %i[update show destroy]
-      # after_action :updater
+      after_action :auto_update, only: :create
 
       # GET /data_ips
       def index
         @data_ips = DataIp.order(created_at: :desc)
-        render json: { status: 'Success', message: 'Load DataTypes', data: @data_ips }, status: :ok
+        render json: { status: 'Success', message: 'Load DataIp', data: @data_ips }, status: :ok
       end
 
       # POST /data_ip
@@ -16,8 +16,7 @@ module Api
         @data_ip = DataIp.create(data_ip_params)
         if @data_ip.save
           pin_me(:ip_address)
-          @data_ip.updater
-          render json: { status: 'Success', message: 'Created DataTypes', data: @data_ips }, status: :created
+          render json: { status: 'Success', message: 'Created DataIp', data: @data_ip }, status: :created
         else
           render json: @data_ip.errors, status: :unprocessable_entity
         end
@@ -25,7 +24,7 @@ module Api
 
       # GET /data_ips/:id
       def show
-        render json: { status: 'Success', message: 'Load DataType', data: @data_ip }, status: :ok
+        render json: { status: 'Success', message: 'Load DataIp', data: @data_ip }, status: :ok
       end
 
       # PUT /data_ips/:id
@@ -58,18 +57,18 @@ module Api
         JSON.parse(Geolocation.getiplocation(ip))
       end
 
-      def updater
+      def auto_update
         # update_column(:column_name, new_value) # This will skip validation gracefully.
         # update_column(:ip_address, pin_me(@data_ip.ip_address).values.reverse[0])
         @data_ip.update_column(:ip_type, pin_me(@data_ip.ip_address).values.reverse[1])
-        # @data_ip.update_column(:continent_code, pin_me(@data_ip.ip_address).values.reverse[2])
-        # @data_ip.update_column(:continent_name, pin_me(@data_ip.ip_address).values.reverse[3])
-        # @data_ip.update_column(:country_code, pin_me(@data_ip.ip_address).values.reverse[4])
-        # @data_ip.update_column(:country_name, pin_me(@data_ip.ip_address).values.reverse[5])
-        # @data_ip.update_column(:region_code, pin_me(@data_ip.ip_address).values.reverse[6])
-        # @data_ip.update_column(:region_name, pin_me(@data_ip.ip_address).values.reverse[7])
-        # @data_ip.update_column(:city, pin_me(@data_ip.ip_address).values.reverse[8])
-        # @data_ip.update_column(:zip, pin_me(@data_ip.ip_address).values.reverse[9])
+        @data_ip.update_column(:continent_code, pin_me(@data_ip.ip_address).values.reverse[2])
+        @data_ip.update_column(:continent_name, pin_me(@data_ip.ip_address).values.reverse[3])
+        @data_ip.update_column(:country_code, pin_me(@data_ip.ip_address).values.reverse[4])
+        @data_ip.update_column(:country_name, pin_me(@data_ip.ip_address).values.reverse[5])
+        @data_ip.update_column(:region_code, pin_me(@data_ip.ip_address).values.reverse[6])
+        @data_ip.update_column(:region_name, pin_me(@data_ip.ip_address).values.reverse[7])
+        @data_ip.update_column(:city, pin_me(@data_ip.ip_address).values.reverse[8])
+        @data_ip.update_column(:zip, pin_me(@data_ip.ip_address).values.reverse[9])
       end
     end
   end
